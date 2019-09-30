@@ -6,7 +6,7 @@
   font-weight: 400;
 }
 :root {
-  --black: #0e0e0e;
+  --black: #161616;
   --letter-color: #fff;
   --letter-width: calc(9.6vw * 2.5);
   --letter-height: calc(7.98vw * 2.5);
