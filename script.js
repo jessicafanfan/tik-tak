@@ -192,7 +192,7 @@ function expandBg() {
     delay: 0.2
   });
   setTimeout(function() {
-    document.querySelector(".info-button span").innerHTML = "Close";
+    document.querySelector(".info-button span").innerHTML = "Back";
   }, 100);
   TweenMax.to(bg, 0.4, {
     css: {
@@ -213,6 +213,7 @@ function expandBg() {
         delay: 0.1
       });
       document.body.classList.add("info-page");
+      document.querySelector(".specimen-wrapper").scrollTop = 0;
       TweenMax.staggerFrom(
         Array.prototype.slice.call(
           document.querySelectorAll(".specimen-wrapper__inner .letter-wrapper"),
@@ -310,7 +311,33 @@ function onReady() {
       createRandomWiggle(letters[Math.floor(Math.random() * lettersRange)]);
     }
   }, 7000);
-  TweenMax.to("html", 2, { "--accent": "#ff3500", yoyo: true, repeat: -1 });
+  let colorTl = new TimelineMax({ repeat: -1 });
+  colorTl
+    .to("html", 2, {
+      "--accent": "#FE8837",
+      delay: 1.5,
+      ease: Power2.easeInOut
+    })
+    .to("html", 2, {
+      "--accent": "#14C3FF",
+      delay: 1.5,
+      ease: Power2.easeInOut
+    })
+    .to("html", 2, {
+      "--accent": "#FBB42C",
+      delay: 1.5,
+      ease: Power2.easeInOut
+    })
+    .to("html", 2, {
+      "--accent": "#EC5EF1",
+      delay: 1.5,
+      ease: Power2.easeInOut
+    })
+    .to("html", 2, {
+      "--accent": "#2EDF7A",
+      delay: 1.5,
+      ease: Power2.easeInOut
+    });
   document
     .querySelector(".info-button")
     .addEventListener("click", bgFunctionController);
