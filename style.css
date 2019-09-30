@@ -49,6 +49,9 @@ main {
   outline: none;
   padding: 0;
 }
+.shape-toggle-wrapper button:hover {
+  background: #191919;
+}
 .shape-toggle-wrapper .toggle-sharp {
   width: calc(1rem - 1px);
   height: calc(1rem - 1px);
@@ -60,13 +63,16 @@ main {
   width: 1rem;
   height: 1rem;
   border-radius: 1rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
 }
 .soft-mode .shape-toggle-wrapper .toggle-round {
   background: #191919;
 }
 .info-page .shape-toggle-wrapper button {
   border: 1px solid var(--accent);
+}
+.info-page .shape-toggle-wrapper button:hover {
+  background: var(--accent);
 }
 
 .info-page.sharp-mode .shape-toggle-wrapper .toggle-sharp,
@@ -273,8 +279,7 @@ main {
   visibility: visible;
   z-index: 2;
   display: grid;
-  grid-template-columns: 25vw 70vw;
-  grid-gap: 5vw;
+  grid-template-columns: 25vw 75vw;
 }
 .info-page .info-section .description {
   padding: 5rem 0 0 5rem;
@@ -288,6 +293,7 @@ main {
 }
 .info-page .info-section .specimen-wrapper {
   overflow: auto;
+  padding-left: 5vw;
 }
 .info-page .info-section .specimen-wrapper__inner {
   padding: 4.5rem 9rem 5rem 0;

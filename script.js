@@ -59,10 +59,15 @@ function createRowAnim(letterWrapper, letter) {
       }
       rowIndex++;
     }
-    let y =
+    let homeY =
       (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) *
         0.0798 *
         2.5) /
+      7;
+    let specimenY =
+      (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) *
+        0.0798 *
+        1.2) /
       7;
     TweenMax.set(letter, {
       xPercent: -5,
@@ -77,7 +82,7 @@ function createRowAnim(letterWrapper, letter) {
         evenRows,
         1.5,
         {
-          x: -60,
+          x: document.body.classList.contains("info-page") ? -20 : -50,
           y: 0,
           delay: 0.06,
           ease: Elastic.easeOut.config(1, 0.5),
@@ -89,8 +94,8 @@ function createRowAnim(letterWrapper, letter) {
         oddRows,
         0.4,
         {
-          x: y,
-          y: y,
+          x: document.body.classList.contains("info-page") ? specimenY : homeY,
+          y: document.body.classList.contains("info-page") ? specimenY : homeY,
           delay: 0.04,
           ease: Back.easeOut
         },
@@ -152,6 +157,9 @@ function bgFunctionController() {
     clearInterval(specimenWiggleInterval);
   } else {
     expandBg();
+    for (var i = 0; i < specimenLetters.length; i++) {
+      createRowAnim(specimenLetterWrappers[i], specimenLetters[i]);
+    }
     let specimenWiggleInterval = setInterval(function() {
       if (
         document.hasFocus() &&
@@ -161,7 +169,7 @@ function bgFunctionController() {
           specimenLetters[Math.floor(Math.random() * specimenLettersRange)]
         );
       }
-    }, 2000);
+    }, 5000);
   }
 }
 function expandBg() {
@@ -209,7 +217,7 @@ function expandBg() {
         Array.prototype.slice.call(
           document.querySelectorAll(".specimen-wrapper__inner .letter-wrapper"),
           0,
-          13
+          17
         ),
         0.2,
         {
@@ -234,6 +242,11 @@ function minimizeBg() {
   setTimeout(function() {
     document.querySelector(".info-button span").innerHTML = "Info";
   }, 100);
+  TweenMax.to(document.querySelector(".shape-toggle-wrapper"), 0.2, {
+    css: {
+      opacity: 0
+    }
+  });
   let minimizeTl = new TimelineMax();
   minimizeTl
     .to(document.querySelector(".info-button__border"), 0.4, {
@@ -251,6 +264,11 @@ function minimizeBg() {
         },
         onComplete: function() {
           document.body.classList.remove("info-page");
+          TweenMax.to(document.querySelector(".shape-toggle-wrapper"), 0.2, {
+            css: {
+              opacity: 1
+            }
+          });
         }
       },
       "-=0.3"
